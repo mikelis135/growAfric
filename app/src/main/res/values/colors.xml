@@ -4,4 +4,8 @@
     <color name="colorPrimaryDark">#303F9F</color>
     <color name="colorAccent">#FF4081</color>
     <color name="cardview_dark_background">#FF424242</color>
+    <color name="business_title">#4c4c4c</color>
+    <color name="grey_5">#f2f2f2</color>
+    <color name="grey_60">#263238</color>
+    <color name="placeholder_bg">#dddddd</color>
 </resources>

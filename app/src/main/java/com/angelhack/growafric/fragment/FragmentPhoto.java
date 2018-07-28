@@ -1,16 +1,10 @@
 package com.angelhack.growafric.fragment;
 
-import android.Manifest;
-import android.content.DialogInterface;
 import android.content.Intent;
-import android.content.res.Resources;
-import android.net.Uri;
+import android.graphics.Bitmap;
 import android.os.Bundle;
-import android.provider.MediaStore;
 import android.support.v4.app.Fragment;
-import android.support.v7.app.AlertDialog;
 import android.util.Log;
-import android.util.TypedValue;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -18,24 +12,27 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
+import android.widget.VideoView;
 
 import com.angelhack.growafric.R;
 import com.angelhack.growafric.helper.CameraUtils;
-import com.karumi.dexter.Dexter;
-import com.karumi.dexter.MultiplePermissionsReport;
-import com.karumi.dexter.PermissionToken;
-import com.karumi.dexter.listener.PermissionRequest;
-import com.karumi.dexter.listener.multi.MultiplePermissionsListener;
-
-import java.io.File;
-import java.util.List;
-
 
 public class FragmentPhoto extends Fragment {
 
+    private OnCameraClickListener listener;
+
+    public interface OnCameraClickListener {
+        void onCameraClicked();
+    }
+
+
+    public void setListener(OnCameraClickListener listener){
+        this.listener = listener;
+    }
+
+    // Activity request codes
     private static final int CAMERA_CAPTURE_IMAGE_REQUEST_CODE = 100;
     private static final int CAMERA_CAPTURE_VIDEO_REQUEST_CODE = 200;
-
     // key to store image path in savedInstance state
     public static final String KEY_IMAGE_STORAGE_PATH = "image_path";
 
@@ -45,113 +42,63 @@ public class FragmentPhoto extends Fragment {
     // Bitmap sampling size
     public static final int BITMAP_SAMPLE_SIZE = 8;
 
+    // Gallery directory name to store the images or videos
+    public static final String GALLERY_DIRECTORY_NAME = "Hello Camera";
+
+    // Image and Video file extensions
+    public static final String IMAGE_EXTENSION = "jpg";
+    public static final String VIDEO_EXTENSION = "mp4";
+
     private static String imageStoragePath;
 
     private TextView txtDescription;
     private ImageView imgPreview;
+    private VideoView videoPreview;
     private Button btnCapturePicture;
+    private TextView photohint;
 
-    // Gallery directory name to store the images or videos
-    public static final String GALLERY_DIRECTORY_NAME = "growAfric";
-
-    // Image and Video file extensions
-    public static final String IMAGE_EXTENSION = "jpg";
-
-    public FragmentPhoto() {
-    }
-
-    public static FragmentPhoto newInstance() {
-        FragmentPhoto fragment = new FragmentPhoto();
+    public static FragmentIntro newInstance() {
+        FragmentIntro fragment = new FragmentIntro();
         return fragment;
     }
 
+    private View rootView;
+
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        View rootView = inflater.inflate(R.layout.fragment_photo, container, false);
+        rootView = inflater.inflate(R.layout.fragment_photo, container, false);
+
+
+        // Checking availability of the camera
         if (!CameraUtils.isDeviceSupportCamera(getActivity())) {
             Toast.makeText(getActivity(),
                     "Sorry! Your device doesn't support camera",
                     Toast.LENGTH_LONG).show();
             // will close the app if the device doesn't have camera
             getActivity().finish();
-            imgPreview = rootView.findViewById(R.id.imgPreview);
-            btnCapturePicture = rootView.findViewById(R.id.btnCapturePicture);
-
-            btnCapturePicture.setOnClickListener(new View.OnClickListener() {
-
-                @Override
-                public void onClick(View v) {
-                    if (CameraUtils.checkPermissions(getActivity())) {
-                        captureImage();
-                    } else {
-                        requestCameraPermission(MEDIA_TYPE_IMAGE);
-                    }
-                }
-            });
-
         }
+
+       // txtDescription = rootView.findViewById(R.id.txt_desc);
+        imgPreview = rootView.findViewById(R.id.imgPreview);
+        photohint = rootView.findViewById(R.id.photohint);
+        imgPreview.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View v) {
+              listener.onCameraClicked();
+            }
+        });
+
         return rootView;
-    }
+}
 
-    private void captureImage() {
-        Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+    public void setImage(Bitmap bitmap){
+        //todo handle image setting
+        Log.e("j", "l");
+        imgPreview.setImageBitmap(bitmap);
+        photohint.setVisibility(View.GONE);
 
-        File file = CameraUtils.getOutputMediaFile(MEDIA_TYPE_IMAGE);
-        if (file != null) {
-            imageStoragePath = file.getAbsolutePath();
-            Log.e("path", imageStoragePath+"");
-        }
-
-        Uri fileUri = CameraUtils.getOutputMediaFileUri(getActivity(), file);
-
-        intent.putExtra(MediaStore.EXTRA_OUTPUT, fileUri);
-
-        // start the image capture Intent
-        startActivityForResult(intent, CAMERA_CAPTURE_IMAGE_REQUEST_CODE);
-    }
-
-    private void requestCameraPermission(final int type) {
-        Dexter.withActivity(getActivity())
-                .withPermissions(Manifest.permission.CAMERA,
-                        Manifest.permission.WRITE_EXTERNAL_STORAGE,
-                        Manifest.permission.RECORD_AUDIO)
-                .withListener(new MultiplePermissionsListener() {
-                    @Override
-                    public void onPermissionsChecked(MultiplePermissionsReport report) {
-                        if (report.areAllPermissionsGranted()) {
-
-                            if (type == MEDIA_TYPE_IMAGE) {
-                                // capture picture
-                                captureImage();
-                            }
-
-                        } else if (report.isAnyPermissionPermanentlyDenied()) {
-                            showPermissionsAlert();
-                        }
-                    }
-
-
-                    @Override
-                    public void onPermissionRationaleShouldBeShown(List<PermissionRequest> permissions, PermissionToken token) {
-                        token.continuePermissionRequest();
-                    }
-                }).check();
-    }
-
-    private void showPermissionsAlert() {
-        AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
-        builder.setTitle("Permissions required!")
-                .setMessage("Camera needs few permissions to work properly. Grant them in settings.")
-                .setPositiveButton("GOTO SETTINGS", new DialogInterface.OnClickListener() {
-                    public void onClick(DialogInterface dialog, int which) {
-                        CameraUtils.openSettings(getActivity());
-                    }
-                })
-                .setNegativeButton("CANCEL", new DialogInterface.OnClickListener() {
-                    public void onClick(DialogInterface dialog, int which) {
-
-                    }
-                }).show();
     }
 
 }

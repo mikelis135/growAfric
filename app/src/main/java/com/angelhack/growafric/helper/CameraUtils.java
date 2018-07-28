@@ -58,10 +58,7 @@ public class CameraUtils {
         return BitmapFactory.decodeFile(filePath, options);
     }
 
-    /**
-     * Checks whether device has camera or not. This method not necessary if
-     * android:required="true" is used in manifest file
-     */
+
     public static boolean isDeviceSupportCamera(Context context) {
         if (context.getPackageManager().hasSystemFeature(
                 PackageManager.FEATURE_CAMERA)) {

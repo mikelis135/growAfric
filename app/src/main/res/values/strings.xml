@@ -5,4 +5,6 @@
     <string name="title_photo">Photo</string>
     <string name="title_details">Details</string>
     <string name="btn_take_picture">Take Picture</string>
+    <string name="preview_description">Photo Preview</string>
+    <string name="tap">Tap to Take Picture</string>
 </resources>
