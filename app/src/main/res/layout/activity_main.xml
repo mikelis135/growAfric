@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity">
+
+    <TextView
+        android:id="@+id/growAfric"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="growAfric"
+        android:fontFamily="casual"
+        android:textSize="28sp"
+        android:textStyle="bold"
+        android:layout_centerInParent="true" />
+
+        <Button
+            android:id="@+id/investBtn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/growAfric"
+            android:layout_centerHorizontal="true"
+            android:background="@drawable/corner"
+            android:textAllCaps="false"
+            android:layout_marginTop="20dp"
+            android:padding="10dp"
+            android:text="Invest My Business"/>
+
+</RelativeLayout>

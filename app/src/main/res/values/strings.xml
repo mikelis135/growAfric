@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">growAfric</string>
+    <string name="title_activity_register">Register</string>
+    <string name="title_intro">Intro</string>
+    <string name="title_photo">Photo</string>
+    <string name="title_details">Details</string>
+    <string name="btn_take_picture">Take Picture</string>
+</resources>
