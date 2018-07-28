@@ -1,4 +1,5 @@
 apply plugin: 'com.android.application'
+apply plugin: 'kotlin-android'
 
 android {
     compileSdkVersion 27
@@ -18,6 +19,8 @@ android {
         }
     }
 }
+ext.anko_version = '0.10.4'
+kotlin { experimental { coroutines 'enable' } }
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
@@ -36,8 +39,23 @@ dependencies {
     implementation 'com.squareup.okhttp3:logging-interceptor:3.8.0'
     implementation 'com.google.code.gson:gson:2.8.4'
     implementation 'com.android.support:support-vector-drawable:27.1.1'
+    implementation 'com.google.firebase:firebase-database:11.8.0'
+    implementation 'com.google.firebase:firebase-storage:11.8.0'
+    implementation 'com.google.firebase:firebase-auth:11.8.0'
     testImplementation 'junit:junit:4.12'
     implementation 'com.karumi:dexter:4.2.0'
     androidTestImplementation 'com.android.support.test:runner:1.0.2'
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
+
+    implementation "org.jetbrains.anko:anko-commons:$anko_version"
+    implementation "org.jetbrains.anko:anko-sdk25-coroutines:$anko_version"
+    implementation "org.jetbrains.anko:anko-appcompat-v7-coroutines:$anko_version"
 }
+
+apply plugin: 'com.google.gms.google-services'
+repositories {
+    mavenCentral()
+}
+
+apply plugin: 'kotlin-android-extensions'

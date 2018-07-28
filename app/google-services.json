@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "662091302051",
+    "firebase_url": "https://growafric.firebaseio.com",
+    "project_id": "growafric",
+    "storage_bucket": "growafric.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:662091302051:android:0e99ac23f88dfd9f",
+        "android_client_info": {
+          "package_name": "com.angelhack.growafric"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "662091302051-5p4fikqpmf1fqkn1h17hghvq585f703s.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.angelhack.growafric",
+            "certificate_hash": "9817383bddf54b49f4974afddfc2641538500ea3"
+          }
+        },
+        {
+          "client_id": "662091302051-2qqjoj3armur73enq86o2p8jch0ip6tf.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB_xcMKBhVdATRtIy3xnDjpCKUGfnVgeo4"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "662091302051-2qqjoj3armur73enq86o2p8jch0ip6tf.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
