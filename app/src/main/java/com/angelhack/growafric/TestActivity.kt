@@ -85,6 +85,7 @@ class TestActivity : AppCompatActivity(), IView, SignInView, RegisterView {
         }
 
         registerBusiness.setOnClickListener {
+            //Pass in image_url as empty for now
             //You pass in the automatically generated key as id - passing the user id gotten from Firebase
             val businessModel = BusinessModel(id = firebaseUser.uid, name = "Ace Ventures", address = "23, Sinari, VI", revenue_generated = "1400", amountNeeded = "400", founder_name = "Boss Tai", skills = "Skills", previous_business_revenue = "14.5", accountBvn = "1234512345", email = "boss@tai.com", socialMediaLinks = "facebook.com/hello")
 
@@ -97,8 +98,6 @@ class TestActivity : AppCompatActivity(), IView, SignInView, RegisterView {
             //Retrieve all items in the list
             BusinessPresenter(this).retrieveData()
         }
-
-
 
 
     }

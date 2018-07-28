@@ -40,6 +40,7 @@ class BusinessPresenter(private val view : IView) {
 
         }.addOnCompleteListener {
             if (it.isSuccessful){
+                businessModel.image_url = it.result.downloadUrl.toString()
                 firebaseDatabase.child(businessModel.id).setValue(businessModel){
                     error, reference ->
                     error?.let {
