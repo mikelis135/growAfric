@@ -15,7 +15,6 @@ import android.support.v7.app.AppCompatActivity;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.MenuItem;
-import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -34,7 +33,7 @@ import com.karumi.dexter.listener.multi.MultiplePermissionsListener;
 import java.io.File;
 import java.util.List;
 
-public class Register extends AppCompatActivity implements FragmentPhoto.OnCameraClickListener  {
+public class Home extends AppCompatActivity implements FragmentPhoto.OnCameraClickListener  {
 
     private TextView mTextMessage;
     private ViewPager view_pager;
@@ -55,15 +54,15 @@ public class Register extends AppCompatActivity implements FragmentPhoto.OnCamer
         @Override
         public boolean onNavigationItemSelected(@NonNull MenuItem item) {
             switch (item.getItemId()) {
-                case R.id.navigation_intro:
+                case R.id.navigation_profile:
                  //   mTextMessage.setText(R.string.title_intro);
                     view_pager.setCurrentItem(0);
                     return true;
-                case R.id.navigation_photo:
+                case R.id.navigation_capture:
                 //    mTextMessage.setText(R.string.title_photo);
                     view_pager.setCurrentItem(1);
                     return true;
-                case R.id.navigation_details:
+                case R.id.navigation_business:
                 //    mTextMessage.setText(R.string.title_details);
                     view_pager.setCurrentItem(2);
                     return true;
@@ -75,7 +74,7 @@ public class Register extends AppCompatActivity implements FragmentPhoto.OnCamer
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_register);
+        setContentView(R.layout.activity_home);
 
         mTextMessage = findViewById(R.id.message);
         BottomNavigationView navigation = findViewById(R.id.navigation);
@@ -214,7 +213,7 @@ public class Register extends AppCompatActivity implements FragmentPhoto.OnCamer
                 .setMessage("Camera needs few permissions to work properly. Grant them in settings.")
                 .setPositiveButton("GOTO SETTINGS", new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int which) {
-                        CameraUtils.openSettings(Register.this);
+                        CameraUtils.openSettings(Home.this);
                     }
                 })
                 .setNegativeButton("CANCEL", new DialogInterface.OnClickListener() {

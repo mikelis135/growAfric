@@ -1,25 +1,53 @@
 package com.angelhack.growafric.fragment;
 
-import android.content.Intent;
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.os.Bundle;
+import android.support.design.widget.TextInputEditText;
 import android.support.v4.app.Fragment;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 import android.widget.VideoView;
 
 import com.angelhack.growafric.R;
 import com.angelhack.growafric.helper.CameraUtils;
+import com.angelhack.growafric.models.BusinessModel;
+import com.angelhack.growafric.views.IView;
+import com.mikhaellopez.circularimageview.CircularImageView;
+import com.angelhack.growafric.presenters.BusinessPresenter;
 
-public class FragmentPhoto extends Fragment {
+import org.jetbrains.annotations.NotNull;
+
+import java.util.ArrayList;
+
+public class FragmentPhoto extends Fragment implements IView{
 
     private OnCameraClickListener listener;
+
+    @Override
+    public void onPostSuccessful(@NotNull BusinessModel model) {
+
+    }
+
+    @Override
+    public void onPostError(@NotNull BusinessModel model, @NotNull String error) {
+
+    }
+
+    @Override
+    public void onProcessing(int percentage) {
+
+    }
+
+    @Override
+    public void onRetrievalSuccess(@NotNull ArrayList<BusinessModel> businessModels) {
+
+    }
 
     public interface OnCameraClickListener {
         void onCameraClicked();
@@ -39,9 +67,11 @@ public class FragmentPhoto extends Fragment {
     public static final int MEDIA_TYPE_IMAGE = 1;
     public static final int MEDIA_TYPE_VIDEO = 2;
 
+    private TextInputEditText businessName, address, revenue_generated, skills, previous_business_revenue, amount_needed, current_revenue, accountBVN, sociallinks;
+
     // Bitmap sampling size
     public static final int BITMAP_SAMPLE_SIZE = 8;
-
+    private BusinessModel businessModel;
     // Gallery directory name to store the images or videos
     public static final String GALLERY_DIRECTORY_NAME = "Hello Camera";
 
@@ -52,10 +82,12 @@ public class FragmentPhoto extends Fragment {
     private static String imageStoragePath;
 
     private TextView txtDescription;
-    private ImageView imgPreview;
+    private CircularImageView imgPreview;
     private VideoView videoPreview;
     private Button btnCapturePicture;
     private TextView photohint;
+    private SharedPreferences sharedPref;
+    private SharedPreferences.Editor editor;
 
     public static FragmentIntro newInstance() {
         FragmentIntro fragment = new FragmentIntro();
@@ -89,15 +121,38 @@ public class FragmentPhoto extends Fragment {
               listener.onCameraClicked();
             }
         });
+        sharedPref = getActivity().getBaseContext().getSharedPreferences("com.angelhack.growafric.PREFERENCE_FILE_KEY", Context.MODE_PRIVATE);
+
+        imgPreview.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                String userid = sharedPref.getString("userid", "");
+                String displayname = sharedPref.getString("displayname", "");
+                String email = sharedPref.getString("email", "");
+                String businessName = "";                String address = "";
+
+                String revenue_generated = "";                String amount_needed = "";
+                String skills = "";                String previous_business_revenue = "";                String accountBVN = "";
+                String sociallinks = "";
+
+
+              //  private TextInputEditText businessName, address, revenue_generated, skills, previous_business_revenue, current_revenue;
+                businessModel = new BusinessModel(userid, businessName, address, revenue_generated, amount_needed, displayname, skills, previous_business_revenue, accountBVN, email, sociallinks, "" );
+
+                //Make the call
+                new BusinessPresenter(FragmentPhoto.this).startPostData(businessModel, Bitmap.createBitmap(5, 5, Bitmap.Config.ARGB_4444));
+
+            }
+        });
 
         return rootView;
 }
 
     public void setImage(Bitmap bitmap){
         //todo handle image setting
-        Log.e("j", "l");
         imgPreview.setImageBitmap(bitmap);
         photohint.setVisibility(View.GONE);
+        imgPreview.setAlpha(1);
 
     }
 

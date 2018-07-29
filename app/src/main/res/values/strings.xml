@@ -7,4 +7,10 @@
     <string name="btn_take_picture">Take Picture</string>
     <string name="preview_description">Photo Preview</string>
     <string name="tap">Tap to Take Picture</string>
+    <string name="login">Login</string>
+    <string name="signup">Sign Up</string>
+    <string name="title_business">Business</string>
+    <string name="title_profile">Profile</string>
+    <string name="title_capture">Capture</string>
+    <string name="revenue_and_media">Revenue &amp; Media</string>
 </resources>

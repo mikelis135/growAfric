@@ -26,7 +26,7 @@ public class MainActivity extends AppCompatActivity {
         investBtn = findViewById(R.id.investBtn);
         imgPreview = findViewById(R.id.imgPreview);
 
-        final Intent intent = new Intent(this, Register.class);
+        final Intent intent = new Intent(this, Home.class);
         investBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
