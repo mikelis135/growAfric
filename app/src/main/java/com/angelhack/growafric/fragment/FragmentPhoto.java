@@ -6,6 +6,7 @@ import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.support.design.widget.TextInputEditText;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -28,10 +29,11 @@ import java.util.ArrayList;
 public class FragmentPhoto extends Fragment implements IView{
 
     private OnCameraClickListener listener;
+    private Bitmap bitmap2;
 
     @Override
     public void onPostSuccessful(@NotNull BusinessModel model) {
-
+        Log.e("business", model.getName()+model.getFounder_name());
     }
 
     @Override
@@ -84,7 +86,7 @@ public class FragmentPhoto extends Fragment implements IView{
     private TextView txtDescription;
     private CircularImageView imgPreview;
     private VideoView videoPreview;
-    private Button btnCapturePicture;
+    private Button register;
     private TextView photohint;
     private SharedPreferences sharedPref;
     private SharedPreferences.Editor editor;
@@ -114,6 +116,7 @@ public class FragmentPhoto extends Fragment implements IView{
        // txtDescription = rootView.findViewById(R.id.txt_desc);
         imgPreview = rootView.findViewById(R.id.imgPreview);
         photohint = rootView.findViewById(R.id.photohint);
+        register = rootView.findViewById(R.id.register);
         imgPreview.setOnClickListener(new View.OnClickListener() {
 
             @Override
@@ -123,7 +126,7 @@ public class FragmentPhoto extends Fragment implements IView{
         });
         sharedPref = getActivity().getBaseContext().getSharedPreferences("com.angelhack.growafric.PREFERENCE_FILE_KEY", Context.MODE_PRIVATE);
 
-        imgPreview.setOnClickListener(new View.OnClickListener() {
+        register.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 String userid = sharedPref.getString("userid", "");
@@ -140,7 +143,7 @@ public class FragmentPhoto extends Fragment implements IView{
                 businessModel = new BusinessModel(userid, businessName, address, revenue_generated, amount_needed, displayname, skills, previous_business_revenue, accountBVN, email, sociallinks, "" );
 
                 //Make the call
-                new BusinessPresenter(FragmentPhoto.this).startPostData(businessModel, Bitmap.createBitmap(5, 5, Bitmap.Config.ARGB_4444));
+                new BusinessPresenter(FragmentPhoto.this).startPostData(businessModel, bitmap2);
 
             }
         });
@@ -151,6 +154,7 @@ public class FragmentPhoto extends Fragment implements IView{
     public void setImage(Bitmap bitmap){
         //todo handle image setting
         imgPreview.setImageBitmap(bitmap);
+        bitmap2 = bitmap;
         photohint.setVisibility(View.GONE);
         imgPreview.setAlpha(1);
 

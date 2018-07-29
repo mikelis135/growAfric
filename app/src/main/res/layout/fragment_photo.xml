@@ -141,7 +141,34 @@
                         android:textColor="@color/grey_40" />
 
                     <android.support.design.widget.TextInputEditText
-                        android:id="@+id/password"
+                        android:id="@+id/revenueGenerated"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="-4dp"
+                        android:layout_marginRight="-4dp"
+                        android:inputType="textPassword"
+                        android:maxLength="50"
+                        android:maxLines="1"
+                        android:singleLine="true"
+                        android:textAppearance="@style/Base.TextAppearance.AppCompat.Large"
+                        android:textColor="@color/blue_600"
+                        android:textStyle="bold"
+                        android:theme="@style/EditText.Grey" />
+
+                    <View
+                        android:layout_width="0dp"
+                        android:layout_height="@dimen/spacing_mlarge" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Social Media Links"
+                        android:textAlignment="center"
+                        android:textAppearance="@style/Base.TextAppearance.AppCompat.Caption"
+                        android:textColor="@color/grey_40" />
+
+                    <android.support.design.widget.TextInputEditText
+                        android:id="@+id/socialMediaLink"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="-4dp"
@@ -224,7 +251,7 @@
                         android:textColor="@color/grey_40" />
 
                     <android.support.design.widget.TextInputEditText
-                        android:id="@+id/amountNeeded"
+                        android:id="@+id/skills"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="-4dp"
@@ -251,7 +278,7 @@
                         android:textColor="@color/grey_40" />
 
                     <android.support.design.widget.TextInputEditText
-                        android:id="@+id/skills"
+                        android:id="@+id/previousBusinessRevenue"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="-4dp"
@@ -272,7 +299,7 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Current Revenue Generated"
+                        android:text="Account BVN"
                         android:textAlignment="center"
                         android:textAppearance="@style/Base.TextAppearance.AppCompat.Caption"
                         android:textColor="@color/grey_40" />
@@ -306,7 +333,7 @@
                         android:textColor="@color/grey_40" />
 
                     <android.support.design.widget.TextInputEditText
-                        android:id="@+id/mostActiveSite"
+                        android:id="@+id/currentrevenue"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="-4dp"
@@ -320,6 +347,38 @@
                         android:textStyle="bold"
                         android:theme="@style/EditText.Grey" />
 
+                    <!--<View-->
+                        <!--android:layout_width="0dp"-->
+                        <!--android:layout_height="@dimen/spacing_middle" />-->
+
+                    <!--<View-->
+                        <!--android:layout_width="0dp"-->
+                        <!--android:layout_height="@dimen/spacing_middle" />-->
+
+
+                    <!--<TextView-->
+                        <!--android:layout_width="wrap_content"-->
+                        <!--android:layout_height="wrap_content"-->
+                        <!--android:text="Amount Needed"-->
+                        <!--android:textAlignment="center"-->
+                        <!--android:textAppearance="@style/Base.TextAppearance.AppCompat.Caption"-->
+                        <!--android:textColor="@color/grey_40" />-->
+
+                    <!--<android.support.design.widget.TextInputEditText-->
+                        <!--android:id="@+id/amountNeeded"-->
+                        <!--android:layout_width="match_parent"-->
+                        <!--android:layout_height="wrap_content"-->
+                        <!--android:layout_marginLeft="-4dp"-->
+                        <!--android:layout_marginRight="-4dp"-->
+                        <!--android:inputType="textPassword"-->
+                        <!--android:maxLength="50"-->
+                        <!--android:maxLines="1"-->
+                        <!--android:singleLine="true"-->
+                        <!--android:textAppearance="@style/Base.TextAppearance.AppCompat.Large"-->
+                        <!--android:textColor="@color/blue_600"-->
+                        <!--android:textStyle="bold"-->
+                        <!--android:theme="@style/EditText.Grey" />-->
+
                     <View
                         android:layout_width="0dp"
                         android:layout_height="@dimen/spacing_middle" />
@@ -331,25 +390,17 @@
                 android:layout_width="0dp"
                 android:layout_height="@dimen/spacing_large" />
 
+            <Button
+                android:id="@+id/register"
+                style="@style/RippleStyleWhite"
+                android:layout_width="match_parent"
+                android:textColor="@android:color/white"
+                android:layout_height="?android:attr/actionBarSize"
+                android:layout_alignParentBottom="true"
+                android:background="@color/blue_600"
+                android:text="Submit Business"/>
+
         </LinearLayout>
-
-
-    <com.balysv.materialripple.MaterialRippleLayout
-        android:id="@+id/register"
-        style="@style/RippleStyleWhite"
-        android:layout_width="match_parent"
-        android:layout_height="?android:attr/actionBarSize"
-        android:layout_alignParentBottom="true"
-        android:background="@color/blue_600">
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:text="REGISTER"
-            android:textAppearance="@style/Base.TextAppearance.AppCompat.Subhead"
-            android:textColor="@android:color/white" />
-    </com.balysv.materialripple.MaterialRippleLayout>
 
 </LinearLayout>
 </ScrollView>

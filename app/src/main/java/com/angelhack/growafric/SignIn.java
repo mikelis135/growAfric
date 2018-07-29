@@ -45,7 +45,8 @@ public class SignIn extends AppCompatActivity implements SignInView{
     @Override
     public void onLoginSuccess(@NotNull FirebaseUser user) {
         Log.e("suc", user.getUid()+user.getDisplayName());
-        if (!sharedPref.getString("userid", "").equalsIgnoreCase("")) {
+        String userid = user.getUid().toString();
+        if (!userid.equalsIgnoreCase("")) {
             editor = sharedPref.edit();
             editor.putBoolean("loggedin", true);
             editor.commit();
