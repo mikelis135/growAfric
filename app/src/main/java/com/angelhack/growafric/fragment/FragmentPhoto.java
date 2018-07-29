@@ -89,7 +89,8 @@ public class FragmentPhoto extends Fragment implements IView{
     private Button register;
     private TextView photohint;
     private SharedPreferences sharedPref;
-    private SharedPreferences.Editor editor;
+    private String _businessName, _address, _revenue_generated, _skills, _previous_business_revenue, _amount_needed, _current_revenue, _accountBVN, _sociallinks;
+
 
     public static FragmentIntro newInstance() {
         FragmentIntro fragment = new FragmentIntro();
@@ -117,6 +118,16 @@ public class FragmentPhoto extends Fragment implements IView{
         imgPreview = rootView.findViewById(R.id.imgPreview);
         photohint = rootView.findViewById(R.id.photohint);
         register = rootView.findViewById(R.id.register);
+        businessName = rootView.findViewById(R.id.businessName);
+        address = rootView.findViewById(R.id.address);
+        revenue_generated = rootView.findViewById(R.id.revenueGenerated);
+        skills = rootView.findViewById(R.id.skills);
+        previous_business_revenue = rootView.findViewById(R.id.previousBusinessRevenue);
+        amount_needed = rootView.findViewById(R.id.amountNeeded);
+        current_revenue = rootView.findViewById(R.id.currentrevenue);
+        accountBVN = rootView.findViewById(R.id.accountBvn);
+        sociallinks = rootView.findViewById(R.id.socialMediaLink);
+
         imgPreview.setOnClickListener(new View.OnClickListener() {
 
             @Override
@@ -132,15 +143,19 @@ public class FragmentPhoto extends Fragment implements IView{
                 String userid = sharedPref.getString("userid", "");
                 String displayname = sharedPref.getString("displayname", "");
                 String email = sharedPref.getString("email", "");
-                String businessName = "";                String address = "";
+                _businessName = businessName.getText().toString();
+                _address = address.getText().toString();
+                _revenue_generated = revenue_generated.getText().toString();
+                _skills = skills.getText().toString();
+                _previous_business_revenue = previous_business_revenue.getText().toString();
+                _amount_needed = amount_needed.getText().toString();
+                _current_revenue = current_revenue.getText().toString();
+                _accountBVN = accountBVN.getText().toString();
+                _sociallinks = sociallinks.getText().toString();
 
-                String revenue_generated = "";                String amount_needed = "";
-                String skills = "";                String previous_business_revenue = "";                String accountBVN = "";
-                String sociallinks = "";
 
-
-              //  private TextInputEditText businessName, address, revenue_generated, skills, previous_business_revenue, current_revenue;
-                businessModel = new BusinessModel(userid, businessName, address, revenue_generated, amount_needed, displayname, skills, previous_business_revenue, accountBVN, email, sociallinks, "" );
+                //  private TextInputEditText businessName, address, revenue_generated, skills, previous_business_revenue, current_revenue;
+                businessModel = new BusinessModel(userid, _businessName, _address, _revenue_generated, _amount_needed, displayname, _skills, _previous_business_revenue, _accountBVN, email, _sociallinks, "" );
 
                 //Make the call
                 new BusinessPresenter(FragmentPhoto.this).startPostData(businessModel, bitmap2);

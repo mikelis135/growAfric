@@ -23,6 +23,7 @@
                 android:id="@+id/imgPreview"
                 android:layout_width="100dp"
                 android:layout_height="100dp"
+                android:background="@drawable/ic_camera_black_24dp"
                 android:layout_gravity="center_horizontal"
                 app:srcCompat="@drawable/ic_camera_black_24dp"
                 android:alpha="0.5"
@@ -146,7 +147,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="-4dp"
                         android:layout_marginRight="-4dp"
-                        android:inputType="textPassword"
+                        android:inputType="number"
                         android:maxLength="50"
                         android:maxLines="1"
                         android:singleLine="true"
@@ -173,7 +174,6 @@
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="-4dp"
                         android:layout_marginRight="-4dp"
-                        android:inputType="textPassword"
                         android:maxLength="50"
                         android:maxLines="1"
                         android:singleLine="true"
@@ -283,7 +283,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="-4dp"
                         android:layout_marginRight="-4dp"
-                        android:inputType="text"
+                        android:inputType="number"
                         android:maxLength="50"
                         android:maxLines="1"
                         android:singleLine="true"
@@ -310,9 +310,9 @@
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="-4dp"
                         android:layout_marginRight="-4dp"
-                        android:inputType="textPassword"
                         android:maxLength="50"
                         android:maxLines="1"
+                        android:inputType="number"
                         android:singleLine="true"
                         android:textAppearance="@style/Base.TextAppearance.AppCompat.Large"
                         android:textColor="@color/blue_600"
@@ -338,9 +338,9 @@
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="-4dp"
                         android:layout_marginRight="-4dp"
-                        android:inputType="textPassword"
                         android:maxLength="50"
                         android:maxLines="1"
+                        android:inputType="number"
                         android:singleLine="true"
                         android:textAppearance="@style/Base.TextAppearance.AppCompat.Large"
                         android:textColor="@color/blue_600"
@@ -351,33 +351,33 @@
                         <!--android:layout_width="0dp"-->
                         <!--android:layout_height="@dimen/spacing_middle" />-->
 
-                    <!--<View-->
-                        <!--android:layout_width="0dp"-->
-                        <!--android:layout_height="@dimen/spacing_middle" />-->
+                    <View
+                        android:layout_width="0dp"
+                        android:layout_height="@dimen/spacing_middle" />
 
 
-                    <!--<TextView-->
-                        <!--android:layout_width="wrap_content"-->
-                        <!--android:layout_height="wrap_content"-->
-                        <!--android:text="Amount Needed"-->
-                        <!--android:textAlignment="center"-->
-                        <!--android:textAppearance="@style/Base.TextAppearance.AppCompat.Caption"-->
-                        <!--android:textColor="@color/grey_40" />-->
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Amount Needed"
+                        android:textAlignment="center"
+                        android:textAppearance="@style/Base.TextAppearance.AppCompat.Caption"
+                        android:textColor="@color/grey_40" />
 
-                    <!--<android.support.design.widget.TextInputEditText-->
-                        <!--android:id="@+id/amountNeeded"-->
-                        <!--android:layout_width="match_parent"-->
-                        <!--android:layout_height="wrap_content"-->
-                        <!--android:layout_marginLeft="-4dp"-->
-                        <!--android:layout_marginRight="-4dp"-->
-                        <!--android:inputType="textPassword"-->
-                        <!--android:maxLength="50"-->
-                        <!--android:maxLines="1"-->
-                        <!--android:singleLine="true"-->
-                        <!--android:textAppearance="@style/Base.TextAppearance.AppCompat.Large"-->
-                        <!--android:textColor="@color/blue_600"-->
-                        <!--android:textStyle="bold"-->
-                        <!--android:theme="@style/EditText.Grey" />-->
+                    <android.support.design.widget.TextInputEditText
+                        android:id="@+id/amountNeeded"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="-4dp"
+                        android:layout_marginRight="-4dp"
+                        android:inputType="number"
+                        android:maxLength="50"
+                        android:maxLines="1"
+                        android:singleLine="true"
+                        android:textAppearance="@style/Base.TextAppearance.AppCompat.Large"
+                        android:textColor="@color/blue_600"
+                        android:textStyle="bold"
+                        android:theme="@style/EditText.Grey" />
 
                     <View
                         android:layout_width="0dp"
@@ -397,6 +397,7 @@
                 android:textColor="@android:color/white"
                 android:layout_height="?android:attr/actionBarSize"
                 android:layout_alignParentBottom="true"
+                android:layout_marginBottom="30dp"
                 android:background="@color/blue_600"
                 android:text="Submit Business"/>
 

@@ -56,7 +56,7 @@ public class Home extends AppCompatActivity implements FragmentPhoto.OnCameraCli
             switch (item.getItemId()) {
                 case R.id.navigation_profile:
                  //   mTextMessage.setText(R.string.title_intro);
-                    view_pager.setCurrentItem(0);
+                    view_pager.setCurrentItem(2);
                     return true;
                 case R.id.navigation_capture:
                 //    mTextMessage.setText(R.string.title_photo);
@@ -64,7 +64,7 @@ public class Home extends AppCompatActivity implements FragmentPhoto.OnCameraCli
                     return true;
                 case R.id.navigation_business:
                 //    mTextMessage.setText(R.string.title_details);
-                    view_pager.setCurrentItem(2);
+                    view_pager.setCurrentItem(0);
                     return true;
             }
             return false;
@@ -87,12 +87,10 @@ public class Home extends AppCompatActivity implements FragmentPhoto.OnCameraCli
         ViewPagerAdapter adapter = new ViewPagerAdapter(getSupportFragmentManager());
 
         fragmentIntro = new FragmentIntro();
-
         fragmentPhoto = new FragmentPhoto();
-        fragmentPhoto.setListener(this);
-
         fragmentDetails = new FragmentDetails();
 
+        fragmentPhoto.setListener(this);
         adapter.addFragment(fragmentIntro);
         adapter.addFragment(fragmentPhoto);
         adapter.addFragment(fragmentDetails);

@@ -1,11 +1,13 @@
 package com.angelhack.growafric.fragment;
 
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 import com.angelhack.growafric.R;
 
@@ -18,11 +20,13 @@ public class FragmentDetails extends Fragment {
 
     private String mParam1;
     private String mParam2;
+    private TextView foundersName, businessName, email;
 
     public FragmentDetails() {
 
     }
 
+    private SharedPreferences sharedPref;
     public static FragmentDetails newInstance(String param1, String param2) {
         FragmentDetails fragment = new FragmentDetails();
         Bundle args = new Bundle();
@@ -46,6 +50,17 @@ public class FragmentDetails extends Fragment {
                              Bundle savedInstanceState) {
 
         View v = inflater.inflate(R.layout.fragment_details, container, false);
+        foundersName = v.findViewById(R.id.foundersName);
+        businessName = v.findViewById(R.id.businessName);
+        email = v.findViewById(R.id.email);
+        sharedPref = getActivity().getBaseContext().getSharedPreferences("com.angelhack.growafric.PREFERENCE_FILE_KEY", Context.MODE_PRIVATE);
+        String displayname = sharedPref.getString("displayname", "");
+        String emailname = sharedPref.getString("email", "");
+
+        foundersName.setText(displayname);
+        businessName.setText("Member, growAfric");
+        email.setText(emailname);
+
         return  v;
     }
     
@@ -53,12 +68,7 @@ public class FragmentDetails extends Fragment {
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
-//        if (context instanceof FragmentDetails.OnFragmentInteractionListener) {
-//            mListener = (FragmentDetails.OnFragmentInteractionListener) context;
-//        } else {
-//            throw new RuntimeException(context.toString()
-//                    + " must implement OnFragmentInteractionListener");
-//        }
+
     }
 
     @Override
@@ -66,8 +76,4 @@ public class FragmentDetails extends Fragment {
         super.onDetach();
     }
 
-//    public interface OnFragmentInteractionListener {
-//        // TODO: Update argument type and name
-//        void onFragmentInteraction(Uri uri);
-//    }
         }
